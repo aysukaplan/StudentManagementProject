@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "duZh1PGxOzq/Z0R0/vTKNVMDDyMTX9pLutueUmwl1gekMwZtgNP8nxkrkvpQIJ8CYi70Mhea9thOz8SRi4dQJw==",
+  "dgSpecHash": "ipbHD//WdCkmSDPVLTjKcUwJ8Jb/M5PlmurtI39atpINn6BIIfyw6xcS+ZFtRSjhh5MkyAjlTP0jfMYELLqiRg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Asus\\Documents\\myCodes\\Project\\StudentProject\\StudentProject.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.6\\microsoft.entityframeworkcore.6.0.6.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.6\\microsoft.entityframeworkcore.abstractions.6.0.6.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.6\\microsoft.entityframeworkcore.analyzers.6.0.6.nupkg.sha512",
+    "C:\\Users\\Asus\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\6.0.6\\microsoft.entityframeworkcore.inmemory.6.0.6.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\6.0.6\\microsoft.entityframeworkcore.relational.6.0.6.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\6.0.6\\microsoft.entityframeworkcore.sqlserver.6.0.6.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",

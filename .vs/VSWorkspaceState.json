@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\StudentProject",
-    "\\StudentProject\\Properties"
+    "\\StudentProject\\Controllers",
+    "\\StudentProject\\Models",
+    "\\StudentProject\\obj"
   ],
-  "SelectedNode": "\\StudentProject\\StudentProject.csproj",
+  "SelectedNode": "\\StudentSln.sln",
   "PreviewInSolutionExplorer": false
 }
