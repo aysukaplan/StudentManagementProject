@@ -3,9 +3,9 @@
     "",
     "\\StudentProject",
     "\\StudentProject\\Controllers",
-    "\\StudentProject\\Models",
-    "\\StudentProject\\obj"
+    "\\StudentProject\\Datas",
+    "\\StudentProject\\Models"
   ],
-  "SelectedNode": "\\StudentSln.sln",
+  "SelectedNode": "\\StudentProject\\Controllers\\StudentController.cs",
   "PreviewInSolutionExplorer": false
 }
