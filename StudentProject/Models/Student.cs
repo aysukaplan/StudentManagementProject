@@ -1,5 +1,8 @@
 ﻿using System;
+
+
 namespace StudentProject.Models;
+
 
 public class Student : Person
 {
@@ -8,8 +11,8 @@ public class Student : Person
     public int Id { get; set; }
     public int Grade { get; set; }
 
-    public Student(string name, string email, string birthday, DateTime createDate, DateTime updateDate, string graduationDate, int id, int grade )
-        :base(name, email, birthday, createDate, updateDate)
+    public Student(string name, string email, string birthday, string graduationDate, int id, int grade )
+        :base(name, email, birthday)
     {
         GraduationDate = graduationDate;
         Id = id;

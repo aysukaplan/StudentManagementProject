@@ -8,14 +8,10 @@ public class Person
    
     //asagıdaki doğru mu? null kısmı
     //Date leri farklı bir classta mı saklasam?
-    public DateTime CreateDate = null;
-    public DateTime UpdateDate = null;
+    public DateTime CreateDate;
+    public DateTime UpdateDate;
 
-    public Person()
-    {
-        
-    }
-
+    
     public Person(string name, string email, string birthday, DateTime createDate, DateTime updateDate)
     {
         Name = name;
@@ -24,4 +20,12 @@ public class Person
         CreateDate = createDate;
         UpdateDate = updateDate;
     }
+    public Person(string name, string email, string birthday)
+    {
+        Name = name;
+        Email = email;
+        Birthday = birthday;
+    }
+
+
 }

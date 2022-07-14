@@ -15,11 +15,18 @@ namespace StudentProject.Controllers
             _context = context;
         }
 
+        //get all students
         [HttpGet()]
         public IEnumerable<Student> GetStudents()
         { 
 			return _context.GetStudents();
     
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetStudent(int id)
+        {
+            return;
         }
 
     }
