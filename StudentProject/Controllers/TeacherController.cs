@@ -4,22 +4,23 @@ using StudentProject.Models;
 
 namespace StudentProject.Controllers
 {
-    [Route("api/[controllers]")]
     [ApiController]
+    [Route("[controller]s")]
+
 
     public class TeacherController : ControllerBase
     {
 
 
         [HttpGet()]
-        public IEnumerable<Student> GetTeachers()
+        public List<Teacher> GetTeachers()
         {
             return;
 
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetTeacher(int id)
+        public Teacher GetTeacher(int id)
         {
             return;
         }

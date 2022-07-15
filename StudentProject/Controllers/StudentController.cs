@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StudentProject.Models;
+using System;
 
 namespace StudentProject.Controllers
 {
-    [Route("api/[controllers]")]
     [ApiController]
+    [Route("[controller]s")]
 
     public class StudentController : ControllerBase
     {
@@ -17,17 +18,20 @@ namespace StudentProject.Controllers
 
         //get all students
         [HttpGet()]
-        public IEnumerable<Student> GetStudents()
+        public List<Student> GetStudents()
         { 
 			return _context.GetStudents();
     
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetStudent(int id)
+        public Student GetStudent(int id)
         {
-            return;
+            return _context.GetStudents().Where(x => x.Id == id).FirstOrDefault();
+            return _context.GetStudents().Where(x => x.Id == id).FirstOrDefault();
         }
+
+
 
     }
 
