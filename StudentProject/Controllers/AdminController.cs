@@ -9,6 +9,7 @@ namespace StudentProject.Controllers
 
     public class AdminController : ControllerBase
     {
+        /*
         [HttpGet()]
         public List<Admin> GetAdmins()
         {
@@ -22,7 +23,7 @@ namespace StudentProject.Controllers
             return;
         }
 
-
+        /*
         [HttpPost] //bu yanlış oldu gibi diğerlerine de route yazmalıyım
 
         public IActionResult AddAdmin([FromBody] Admin newAdmin)
@@ -104,6 +105,6 @@ namespace StudentProject.Controllers
 
         //[HttpDelete] //delete all students?
         //[HttpDelete] //delete all teachers?
-
+        */
     }
 }

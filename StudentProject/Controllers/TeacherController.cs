@@ -11,7 +11,7 @@ namespace StudentProject.Controllers
     public class TeacherController : ControllerBase
     {
 
-
+        /*
         [HttpGet()]
         public List<Teacher> GetTeachers()
         {
@@ -24,5 +24,6 @@ namespace StudentProject.Controllers
         {
             return;
         }
+        */
     }
 }

@@ -1,29 +1,34 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StudentProject.Models;
+using StudentProject.FileOperations;
 using System;
 
+  
 namespace StudentProject.Controllers
-{
+{   
+  
     [ApiController]
-    [Route("[controller]s")]
-
+    [Route("[controllers]")]
+   
+   
     public class StudentController : ControllerBase
     {
-	 	private readonly StudentContext _context;
+	 	private readonly StudentFileOperations _context;
 
-        public StudentController(StudentContext context)
+        public StudentController(StudentFileOperations context)
         {
             _context = context;
         }
 
         //get all students
         [HttpGet()]
-        public List<Student> GetStudents()
-        { 
-			return _context.GetStudents();
+        public List<Person> GetStudents()
+        {
+            List<Person> students = _context.GetList();
+            return students;
     
         }
-
+/*
         [HttpGet("{id}")]
         public Student GetStudent(int id)
         {
@@ -32,8 +37,7 @@ namespace StudentProject.Controllers
         }
 
 
-
+*/
     }
 
 }
-

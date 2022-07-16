@@ -7,7 +7,9 @@ public class StudentContext
 {
     // reads lines from text and adds the lines string array
 
+    /*
     private string[] _lines = {};
+
 
     private bool _firstList = true;
     public List<Student> StudentList = new List<Student>();
@@ -18,7 +20,7 @@ public class StudentContext
         {
             _lines = File.ReadAllLines(
                 "C:/Users/Asus/Documents/myCodes/Project/StudentProject/Datas/students.txt"); //hata alıyor mu?
-            
+
         }
         catch (Exception e)
         {
@@ -33,7 +35,7 @@ public class StudentContext
             StudentList.Add(Student);
         }
     }
-    
+
     public List<Student>GetStudents(){
         if(_firstList){
             LinesToStudentList();
@@ -44,4 +46,8 @@ public class StudentContext
     public void SetStudents(List<Student> students){
         StudentList = students;
     }
-    }
+    */
+}
+
+
+
