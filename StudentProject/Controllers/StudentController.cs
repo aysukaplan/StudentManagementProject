@@ -22,22 +22,17 @@ namespace StudentProject.Controllers
 
         //get all students
         [HttpGet()]
-        public List<Person> GetStudents()
+        public List<Student> GetStudents()
         {
-            List<Person> students = _context.GetList();
+            List<Student> students = _context.GetStudentList();
             return students;
     
         }
-/*
+
         [HttpGet("{id}")]
-        public Student GetStudent(int id)
+        public Student GetStudent(int id) //null check
         {
-            return _context.GetStudents().Where(x => x.Id == id).FirstOrDefault();
-            return _context.GetStudents().Where(x => x.Id == id).FirstOrDefault();
+            return _context.GetStudentList().Where(x => x.Id == id).FirstOrDefault();
         }
-
-
-*/
     }
-
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using StudentProject.Models;
+using StudentProject.FileOperations;
 
 namespace StudentProject.Controllers
 {
@@ -10,20 +11,26 @@ namespace StudentProject.Controllers
 
     public class TeacherController : ControllerBase
     {
+        private readonly TeacherFileOperations _context;
 
-        /*
+        public TeacherController(TeacherFileOperations context)
+        {
+            _context = context;
+        }
+
+        //get all teachers
         [HttpGet()]
         public List<Teacher> GetTeachers()
         {
-            return;
-
+            List<Teacher> teachers = _context.GetTeacherList();
+            return teachers;
+    
         }
 
         [HttpGet("{id}")]
         public Teacher GetTeacher(int id)
         {
-            return;
+            return _context.GetTeacherList().Where(x => x.Id == id).FirstOrDefault();
         }
-        */
     }
 }
