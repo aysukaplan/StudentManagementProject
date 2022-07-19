@@ -6,7 +6,8 @@ namespace StudentProject.FileOperations;
 
 public interface IFileOperations
 {
-    void Read();
+
+    
     void Write(string line);
     void Clear();
     void DeleteLine(string line);

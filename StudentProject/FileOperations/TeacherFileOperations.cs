@@ -8,10 +8,6 @@ public class TeacherFileOperations :  IFileOperations
 {
     private string _filePath = "Datas/teacher.txt";
 
-    public void Read()
-    {
-        
-    }
 
     public void Write(string line)
     {
@@ -50,6 +46,7 @@ public class TeacherFileOperations :  IFileOperations
     {
         List<Teacher> TeacherList = new List<Teacher>();
         // reads lines from text and adds the lines string array
+        
         string[] _lines = {};
         try
         {

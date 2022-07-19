@@ -10,14 +10,10 @@ public class AdminFileOperations : IFileOperations
     private string _filePath = "Datas/admin.txt";
 
 
-    public AdminFileOperations(){
-        
+    public AdminFileOperations()
+    {
     }
 
-    public void Read()
-    {
-       
-    }
 
     public void Write(string line)
     {
@@ -55,17 +51,11 @@ public class AdminFileOperations : IFileOperations
     {
         List<Admin> AdminList = new List<Admin>();
         // reads lines from text and adds the lines string array
+        
         string[] _lines = {};
-        try
-        {
-            //do we need to close the file
-            _lines = File.ReadAllLines(_filePath);
+        
+        _lines = File.ReadAllLines(_filePath);
 
-        }
-        catch (Exception e)
-        {
-            throw  e;
-        }
         foreach (var line in _lines)
         {
             string[] lineSplit = line.Split(",");

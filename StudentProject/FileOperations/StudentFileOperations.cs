@@ -9,13 +9,7 @@ public class StudentFileOperations : IFileOperations
     private string _filePath = "Datas/student.txt";
 
 
-    public StudentFileOperations()
-    {
-    }
-    public void Read()
-    {
 
-    }
 
     public void Write(string line)
     {

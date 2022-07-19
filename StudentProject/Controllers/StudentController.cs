@@ -6,11 +6,10 @@ using System;
   
 namespace StudentProject.Controllers
 {   
-  
+    [Route("api/Students")]
     [ApiController]
-    [Route("[controllers]")]
    
-   
+
     public class StudentController : ControllerBase
     {
 	 	private readonly StudentFileOperations _context;

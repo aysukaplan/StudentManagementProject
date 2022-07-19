@@ -5,8 +5,9 @@ using StudentProject.FileOperations;
 
 namespace StudentProject.Controllers
 {
+    [Route("api/Teachers")]
     [ApiController]
-    [Route("[controller]s")]
+  
 
 
     public class TeacherController : ControllerBase
