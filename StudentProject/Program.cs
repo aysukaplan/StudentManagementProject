@@ -4,13 +4,7 @@ using StudentProject.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddSingleton<IFileOperations, StudentFileOperations>();
-//builder.Services.AddSingleton<IFileOperations, StudentController>();
-
 builder.Services.AddControllers();
-
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 //builder.Services.AddEndpointsApiExplorer();
@@ -27,6 +21,10 @@ if (app.Environment.IsDevelopment())
     //app.UseSwaggerUI();
 }
 
+app.UseDefaultFiles();
+
+app.UseStaticFiles();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
@@ -34,6 +32,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-
-

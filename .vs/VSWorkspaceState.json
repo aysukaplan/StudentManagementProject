@@ -5,8 +5,7 @@
     "\\StudentProject\\Controllers",
     "\\StudentProject\\Datas",
     "\\StudentProject\\FileOperations",
-    "\\StudentProject\\Models",
-    "\\StudentProject\\Properties"
+    "\\StudentProject\\obj"
   ],
   "PreviewInSolutionExplorer": false
 }

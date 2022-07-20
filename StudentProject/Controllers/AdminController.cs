@@ -24,7 +24,7 @@ namespace StudentProject.Controllers
             return new AdminFileOperations().GetAdminList().Where(x => x.Id == id).FirstOrDefault();
         }
     
-        [HttpPost("Admin")] 
+        [HttpPost("{AdminId}/Admin")] 
 
         public IActionResult AddAdmin([FromBody] Admin newAdmin)
         {
@@ -41,7 +41,7 @@ namespace StudentProject.Controllers
             a.Write(newAdmin.ToString());
             return Ok();
         }
-        [HttpPost("Student")]
+        [HttpPost("{AdminId}/Student")]
         public IActionResult AddStudent([FromBody] Student newStudent)
         {
             List<Student> students = new StudentFileOperations().GetStudentList();
@@ -53,7 +53,7 @@ namespace StudentProject.Controllers
             new StudentFileOperations().Write(newStudent.ToString());
             return Ok();
         }
-        [HttpPost("Teacher")]
+        [HttpPost("{AdminId}/Teacher")]
         public IActionResult AddTeacher([FromBody] Teacher newTeacher)
         {
             List<Teacher> teachers = new TeacherFileOperations().GetTeacherList();
@@ -93,7 +93,7 @@ namespace StudentProject.Controllers
         public IActionResult UpdateStudent(int id,[FromBody] Student updatedStudent)
         {
             List<Student> students = new StudentFileOperations().GetStudentList();
-             var student = students.SingleOrDefault(x=>x.Id==updatedStudent.Id);
+            var student = students.SingleOrDefault(x=>x.Id==updatedStudent.Id);
           
             if(student is null)
                 return BadRequest();

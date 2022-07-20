@@ -11,10 +11,10 @@ public class TeacherFileOperations :  IFileOperations
 
     public void Write(string line)
     {
-        StreamWriter writer = new StreamWriter(_filePath,true);
-        writer.WriteLine();
-        writer.Write(line);
-        writer.Close();
+        string[] readText = File.ReadAllLines(_filePath);
+        readText = readText.Concat(new string[] { line }).ToArray();
+        File.WriteAllText(_filePath,String.Empty);
+        File.AppendAllLines(_filePath,readText);
     }
 
     public void Clear()

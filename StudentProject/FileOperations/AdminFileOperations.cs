@@ -14,10 +14,24 @@ public class AdminFileOperations : IFileOperations
 
     public void Write(string line)
     {
-        StreamWriter writer = new StreamWriter(_filePath, true);
-        var s = writer.NewLine;
-        writer.Write(line);
-        writer.Close();
+        //using (StreamWriter writer = new StreamWriter(_filePath, true))
+        
+            
+        //var s = writer.NewLine;
+        //writer.WriteLine(s);
+        //writer.WriteLine(line);
+         string[] readText = File.ReadAllLines(_filePath);
+        readText = readText.Concat(new string[] { line }).ToArray();
+        File.WriteAllText(_filePath,String.Empty);
+        File.AppendAllLines(_filePath,readText);
+        //using (StreamWriter writer = new StreamWriter(_filePath, true))
+        //{
+        //foreach (string s in readText)
+         //   {
+                
+        //        writer.WriteLine(s);
+         //   }
+        //}
     }
  
     public void Clear()
@@ -32,17 +46,18 @@ public class AdminFileOperations : IFileOperations
 
         // 2. Empty the file
         File.WriteAllText(_filePath, String.Empty);
-
+ 
         // 3. Fill up again, but without the deleted line
-        using (StreamWriter writer = new StreamWriter(_filePath))
+        using (StreamWriter writer = new StreamWriter(_filePath, true))
         {
             foreach (string s in readText)
             {
-                if (!s.Equals(line) && !s.Equals("")) 
+                if (!s.Equals(line)) 
                 {
                     writer.WriteLine(s);
                 }
             }
+
         }
     }
     public List<Admin> GetAdminList()
