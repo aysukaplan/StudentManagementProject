@@ -8,13 +8,11 @@ public class StudentFileOperations : IFileOperations
 {
     private string _filePath = "Datas/student.txt";
 
-
-
-
     public void Write(string line)
     {
-        StreamWriter writer = new StreamWriter(_filePath);
-        writer.WriteLine(line);
+        StreamWriter writer = new StreamWriter(_filePath,true);
+        writer.WriteLine();
+        writer.Write(line);
         writer.Close();
     }
 

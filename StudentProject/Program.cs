@@ -1,10 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using StudentProject.FileOperations;
+using StudentProject.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddSingleton<IFileOperations, StudentFileOperations>();
+//builder.Services.AddSingleton<IFileOperations, StudentController>();
 
 builder.Services.AddControllers();
 

@@ -8,22 +8,13 @@ namespace StudentProject.Controllers
     [Route("api/Teachers")]
     [ApiController]
   
-
-
     public class TeacherController : ControllerBase
     {
-        private readonly TeacherFileOperations _context;
-
-        public TeacherController(TeacherFileOperations context)
-        {
-            _context = context;
-        }
-
         //get all teachers
         [HttpGet()]
         public List<Teacher> GetTeachers()
         {
-            List<Teacher> teachers = _context.GetTeacherList();
+            List<Teacher> teachers = new TeacherFileOperations().GetTeacherList();
             return teachers;
     
         }
@@ -31,7 +22,7 @@ namespace StudentProject.Controllers
         [HttpGet("{id}")]
         public Teacher GetTeacher(int id)
         {
-            return _context.GetTeacherList().Where(x => x.Id == id).FirstOrDefault();
+            return new TeacherFileOperations().GetTeacherList().Where(x => x.Id == id).FirstOrDefault();
         }
     }
 }

@@ -10,15 +10,13 @@ public class AdminFileOperations : IFileOperations
     private string _filePath = "Datas/admin.txt";
 
 
-    public AdminFileOperations()
-    {
-    }
 
 
     public void Write(string line)
     {
-        StreamWriter writer = new StreamWriter(_filePath);
-        writer.WriteLine(line);
+        StreamWriter writer = new StreamWriter(_filePath, true);
+        var s = writer.NewLine;
+        writer.Write(line);
         writer.Close();
     }
  
@@ -40,7 +38,7 @@ public class AdminFileOperations : IFileOperations
         {
             foreach (string s in readText)
             {
-                if (!s.Equals(line))
+                if (!s.Equals(line) && !s.Equals("")) 
                 {
                     writer.WriteLine(s);
                 }

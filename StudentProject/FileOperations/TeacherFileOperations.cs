@@ -11,8 +11,9 @@ public class TeacherFileOperations :  IFileOperations
 
     public void Write(string line)
     {
-        StreamWriter writer = new StreamWriter(_filePath);
-        writer.WriteLine(line);
+        StreamWriter writer = new StreamWriter(_filePath,true);
+        writer.WriteLine();
+        writer.Write(line);
         writer.Close();
     }
 

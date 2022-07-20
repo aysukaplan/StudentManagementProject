@@ -12,26 +12,18 @@ namespace StudentProject.Controllers
 
     public class StudentController : ControllerBase
     {
-	 	private readonly StudentFileOperations _context;
-
-        public StudentController(StudentFileOperations context)
-        {
-            _context = context;
-        }
-
         //get all students
         [HttpGet()]
         public List<Student> GetStudents()
         {
-            List<Student> students = _context.GetStudentList();
+            List<Student> students = new StudentFileOperations().GetStudentList();
             return students;
-    
         }
 
         [HttpGet("{id}")]
         public Student GetStudent(int id) //null check
         {
-            return _context.GetStudentList().Where(x => x.Id == id).FirstOrDefault();
+            return new StudentFileOperations().GetStudentList().Where(x => x.Id == id).FirstOrDefault();
         }
     }
 }
