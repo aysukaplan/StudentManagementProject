@@ -8,32 +8,13 @@ namespace StudentProject.FileOperations;
 public class AdminFileOperations : IFileOperations
 {
     private string _filePath = "Datas/admin.txt";
-
-
-
-
     public void Write(string line)
     {
-        //using (StreamWriter writer = new StreamWriter(_filePath, true))
-        
-            
-        //var s = writer.NewLine;
-        //writer.WriteLine(s);
-        //writer.WriteLine(line);
-         string[] readText = File.ReadAllLines(_filePath);
+        string[] readText = File.ReadAllLines(_filePath);
         readText = readText.Concat(new string[] { line }).ToArray();
         File.WriteAllText(_filePath,String.Empty);
         File.AppendAllLines(_filePath,readText);
-        //using (StreamWriter writer = new StreamWriter(_filePath, true))
-        //{
-        //foreach (string s in readText)
-         //   {
-                
-        //        writer.WriteLine(s);
-         //   }
-        //}
     }
- 
     public void Clear()
     {
         FileStream fileStream = File.Open(_filePath, FileMode.Open);
@@ -76,5 +57,9 @@ public class AdminFileOperations : IFileOperations
             AdminList.Add(admin);
         }
         return AdminList;
+    }
+     public Admin GetAdminById(int id)
+    {
+        return new AdminFileOperations().GetAdminList().Where(x => x.Id == id).FirstOrDefault();
     }
 }

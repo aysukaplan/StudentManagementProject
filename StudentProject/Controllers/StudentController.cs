@@ -9,21 +9,18 @@ namespace StudentProject.Controllers
     [Route("api/Students")]
     [ApiController]
    
-
     public class StudentController : ControllerBase
     {
-        //get all students
         [HttpGet()]
         public List<Student> GetStudents()
         {
-            List<Student> students = new StudentFileOperations().GetStudentList();
-            return students;
+            return new StudentFileOperations().GetStudentList();
         }
 
         [HttpGet("{id}")]
-        public Student GetStudent(int id) //null check
+        public Student GetStudent(int id) 
         {
-            return new StudentFileOperations().GetStudentList().Where(x => x.Id == id).FirstOrDefault();
+            return new StudentFileOperations().GetStudentById(id);
         }
     }
 }

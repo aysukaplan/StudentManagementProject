@@ -16,6 +16,7 @@ public class Student : Person
         GraduationDate = graduationDate;
         Grade = grade;
     }
+    
     public override string ToString()
     {
         return string.Format("{0},{1},{2},{3},{4},{5}", Name, Id, Email, Birthday,GraduationDate,Grade);

@@ -7,16 +7,13 @@ namespace StudentProject.FileOperations;
 public class StudentFileOperations : IFileOperations
 {
     private string _filePath = "Datas/student.txt";
-
     public void Write(string line)
     {
-    
         string[] readText = File.ReadAllLines(_filePath);
         readText = readText.Concat(new string[] { line }).ToArray();
         File.WriteAllText(_filePath,String.Empty);
         File.AppendAllLines(_filePath,readText);
     }
-
     public void Clear()
     {
         FileStream fileStream = File.Open(_filePath, FileMode.Open);
@@ -42,10 +39,9 @@ public class StudentFileOperations : IFileOperations
             }
         }
     }
-    
     public List<Student> GetStudentList()
     {
-        //eğer dosya boştaysa??
+        
         List<Student> StudentList = new List<Student>();
         // reads lines from text and adds the lines string array
         string[] _lines = {};
@@ -66,5 +62,9 @@ public class StudentFileOperations : IFileOperations
             StudentList.Add(student);
         }
         return StudentList;
+    }
+    public Student GetStudentById(int id)
+    {
+        return new StudentFileOperations().GetStudentList().Where(x => x.Id == id).FirstOrDefault();
     }
 }

@@ -7,8 +7,6 @@ namespace StudentProject.FileOperations;
 public class TeacherFileOperations :  IFileOperations
 {
     private string _filePath = "Datas/teacher.txt";
-
-
     public void Write(string line)
     {
         string[] readText = File.ReadAllLines(_filePath);
@@ -16,7 +14,6 @@ public class TeacherFileOperations :  IFileOperations
         File.WriteAllText(_filePath,String.Empty);
         File.AppendAllLines(_filePath,readText);
     }
-
     public void Clear()
     {
         FileStream fileStream = File.Open(_filePath, FileMode.Open);
@@ -42,7 +39,6 @@ public class TeacherFileOperations :  IFileOperations
             }
         }
     }
-
     public List<Teacher> GetTeacherList()
     {
         List<Teacher> TeacherList = new List<Teacher>();
@@ -67,6 +63,8 @@ public class TeacherFileOperations :  IFileOperations
         }
         return TeacherList;
     }
+    public Teacher GetTeacherById(int id)
+    {
+        return new TeacherFileOperations().GetTeacherList().Where(x => x.Id == id).FirstOrDefault();
+    }
 }
-
-

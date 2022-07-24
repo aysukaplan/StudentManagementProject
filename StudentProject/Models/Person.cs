@@ -11,7 +11,6 @@ public class Person
     public DateTime CreateDate { get; set; }
     public DateTime UpdateDate { get; set; }
    
-    public Person(){} 
     public Person(string name, int id, string email, string birthday, DateTime createDate, DateTime updateDate)
     {
         Name = name;
