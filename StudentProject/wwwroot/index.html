@@ -72,7 +72,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" id="btnAdd" onclick="return AddStudent();">Add</button>
-                        <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                        <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="return Update();">Update</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -87,14 +87,14 @@
     });
 
     function deleteStudent(ID) {
-      bootbox.confirm("Do you want to delete this student?", function (result) {
-                if (result == true) {
-                    var data = {
-                      id: ID
-                    };
-          if (data != null) {  
+        var ans = confirm("Are you sure you want to delete this Record?");
+        if (ans) {
+            var data = {
+                id: ID
+            };
+            if (data != null) {  
             $.ajax({
-                type: "POST",
+                type: "DELETE",
                 data: JSON.stringify(data),
                 url: "https://localhost:7058/api/Admins/1/Students/" + ID,
                 contentType: "application/json;charset=UTF-8",
@@ -105,9 +105,12 @@
                 error: function(errormessage) {
                     alert(errormessage.responseText);
                 }
-            });
-          }
-        }})}
+                });
+            }
+            }
+            location.reload(true);
+        }
+    
       
     function AddStudent() {
 
@@ -128,11 +131,13 @@
             success: function(result) {
                 loadData();
                 $('#myModal').modal('hide');
+                location.reload(true);
             },
             error: function(errormessage) {
                 alert(errormessage.responseText);
             }
         });
+        location.reload(true);
     }
 
     function clearTextBox() {
@@ -161,20 +166,24 @@
         success:function(data){
           for (var i=0; i<data.length; i++)
           {
-            var deleteColumn1 = '<a href="#" onclick="Update()">Edit</a> | <a href="#" onclick="deleteStudent("data[i].id")">Delete</a>';
+            var deleteColumn = '<a class="btn  btn-xs btn-danger action" data-action="edit" onClick="deleteStudent('+data[i].id+')"><i class="fa fa-trash"></i>delete </a>';
+            var editColumn = '<a class="btn btn-xs  purple-plum action" data-action="edit" onclick="getbyID('+ data[i].id + ')"><i class="fa fa-edit"></i> edit</a>';
+
+            var deleteColumn1 = '<a href="#" onclick="getbyID("data[i].id")">Edit</a> | <a href="#" onclick="deleteStudent("data[i].id")">Delete</a>';
+            
             table.fnAddData([data[i].name,data[i].email,data[i].birthday,
-            data[i].graduationDate,data[i].grade,data[i].createDate,data[i].updateDate,deleteColumn1]);
+            data[i].graduationDate,data[i].grade,data[i].createDate,data[i].updateDate,editColumn +deleteColumn]);
         
         }
       }
     });
     }
     function Update() {
-      var res = validate();
-    if (res == false) {
-        return false;
-    }
-      var studentObj = {
+        var res = validate();
+        if (res == false) {
+            return false;
+        }
+        var studentObj = {
             name: $('#Name').val(),
             id: $('#ID').val(),
             email: $('#Email').val(),
@@ -184,9 +193,9 @@
         };
         var studentid = studentObj.id;
       $.ajax({
-        url: "https://localhost:7058/api/Admins/1/Students/" ,
+        url: "https://localhost:7058/api/Admins/1/Students/" + studentid ,
         data: JSON.stringify(studentObj),
-        type: "POST",
+        type: "PUT",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
@@ -204,7 +213,39 @@
             alert(errormessage.responseText);
         }
     });
-}function validate() {
+    location.reload(true);
+}
+
+function getbyID(StudentId) {
+    $('#Name').css('border-color', 'lightgrey');
+    $('#Email').css('border-color', 'lightgrey');
+    $('#Birthday').css('border-color', 'lightgrey');
+    $('#GraduationDate').css('border-color', 'lightgrey');
+    $('#Grade').css('border-color', 'lightgrey');
+    $.ajax({
+        url: "https://localhost:7058/api/Students/" + StudentId,
+        typr: "GET",
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (result) {
+            $('#ID').val(result.id);
+            $('#Name').val(result.name);
+            $('#Email').val(result.email);
+            $('#Birthday').val(result.birthday);
+            $('#GraduationDate').val(result.graduationDate);
+            $('#Grade').val(result.grade);
+            jQuery.noConflict(); 
+            $('#myModal').modal('show');
+            $('#btnUpdate').show();
+            $('#btnAdd').hide();
+        },
+        error: function (errormessage) {
+            alert(errormessage.responseText);
+        }
+    });
+    return false;
+}
+function validate() {
     var isValid = true;
     if ($('#Name').val().trim() == "") {
         $('#Name').css('border-color', 'Red');
@@ -252,4 +293,5 @@
     }
     return isValid;
 }
+
 </script>
