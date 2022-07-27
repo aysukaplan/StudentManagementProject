@@ -1,83 +1,255 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
+    <head>
+        <meta charset="utf-8"/>
+        <title>Student Management Project</title>
+    </head>
+    <body>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
   
-    <title>Student Management Project</title>
-</head>
-<body> 
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
-
-  <div class="container">
-    <table class="display" style="width:100%" id="student">
-          <thead>
-            <th>NAME</th>
-            <th>EMAIL</th>
-            <th>BIRTHDAY</th>
-            <th>GRADUATION DATE</th>
-            <th>GRADE</th>
-            <th>CREATE DATE</th>
-            <th>UPDATE DATE</th> 
-            <th> </th>
-           
-          </thead>
-      </table>
-    </div>
-</body>
+        <div class="container">
+            <h2>Student Record</h2>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Student</button>
+            <br/>
+            <br/>
+            <table class="display" style="width:100%" id="student">
+                <thead>
+                    <th>NAME</th>
+                    <th>EMAIL</th>
+                    <th>BIRTHDAY</th>
+                    <th>GRADUATION DATE</th>
+                    <th>GRADE</th>
+                    <th>CREATE DATE</th>
+                    <th>UPDATE DATE</th>
+                    <th></th>
+                </thead>
+                <tbody class="tbody"></tbody>
+            </table>
+        </div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Add Student</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="Name" placeholder="Name"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="id">ID</label>
+                                <input type="text" class="form-control" id="ID" placeholder="ID"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" id="Email" placeholder="Email"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="birthday">Birthday</label>
+                                <input type="text" class="form-control" id="Birthday" placeholder="Birthday"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="graduationDate">Graduation Date</label>
+                                <input type="text" class="form-control" id="GraduationDate" placeholder="Graduation Date"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="grade">Grade</label>
+                                <input type="text" class="form-control" id="Grade" placeholder="Grade"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="btnAdd" onclick="return AddStudent();">Add</button>
+                        <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
-
 <script>
-  var hostUrl = "http://" + document.location.hostname + ":" + window.location.port;
-  var apiUrl = '/api/Students';
 
+    $(document).ready(function() {
+        loadData();
+    });
 
-  $(document).ready(function () {
-    var table = $('#student').dataTable();
-    
-    $.ajax({
-      type : "GET",
-      url: "https://localhost:7058/api/Students",
-      dataType :"json",
-      success:function(data){
-        for (var i=0; i<data.length; i++)
-        {
-          
-          var deleteColumn = '<a class="btn  btn-xs btn-danger action" data-action="edit" onClick=" return deleteStudent(this.data[i].id)">delete<i class="fa fa-trash"></i> </a>';
-          table.fnAddData([data[i].name,data[i].email,data[i].birthday,
-          data[i].graduationDate,data[i].grade,data[i].createDate,data[i].updateDate,deleteColumn]);
-        
-        }
-      },
-      //error:
-    })});
     function deleteStudent(ID) {
-      var ans = confirm("Are you sure you want to delete this Record?");
-      if (ans) {
+      bootbox.confirm("Do you want to delete this student?", function (result) {
+                if (result == true) {
+                    var data = {
+                      id: ID
+                    };
+          if (data != null) {  
+            $.ajax({
+                type: "POST",
+                data: JSON.stringify(data),
+                url: "https://localhost:7058/api/Admins/1/Students/" + ID,
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                success: function(result) {
+                    loadData();
+                },
+                error: function(errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+          }
+        }})}
+      
+    function AddStudent() {
+
+        var studentObj = {
+            name: $('#Name').val(),
+            id: $('#ID').val(),
+            email: $('#Email').val(),
+            birthday: $('#Birthday').val(),
+            graduationDate: $('#GraduationDate').val(),
+            grade: $('#Grade').val(),
+        };
         $.ajax({
-            url: "https://localhost:7058/api/Admins/1/Students/" + ID.toString(),
-            type: "DELETE",
-            contentType: "application/json;charset=UTF-8",
+            url: "https://localhost:7058/api/Admins/1/Student",
+            data: JSON.stringify(studentObj),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
             dataType: "json",
-            success: function (result) {
+            success: function(result) {
                 loadData();
+                $('#myModal').modal('hide');
             },
-            error: function (errormessage) {
+            error: function(errormessage) {
                 alert(errormessage.responseText);
             }
         });
     }
+
+    function clearTextBox() {
+        $('#Name').val("");
+        $('#ID').val("");
+        $('#Email').val("");
+        $('#Birthday').val("");
+        $('#GraduationDate').val("");
+        $('#Grade').val("");
+        $('#btnUpdate').hide();
+        $('#btnAdd').show();
+        $('#Name').css('border-color', 'lightgrey');
+        $('#ID').css('border-color', 'lightgrey');
+        $('#Email').css('border-color', 'lightgrey');
+        $('#Birthday').css('border-color', 'lightgrey');
+        $('#Graduation Date').css('border-color', 'lightgrey');
+        $('#Grade').css('border-color', 'lightgrey');
+    }
+
+    function loadData() {
+      var table = $('#student').dataTable();
+      $.ajax({
+        type : "GET",
+        url: "https://localhost:7058/api/Students",
+        dataType :"json",
+        success:function(data){
+          for (var i=0; i<data.length; i++)
+          {
+            var deleteColumn1 = '<a href="#" onclick="Update()">Edit</a> | <a href="#" onclick="deleteStudent("data[i].id")">Delete</a>';
+            table.fnAddData([data[i].name,data[i].email,data[i].birthday,
+            data[i].graduationDate,data[i].grade,data[i].createDate,data[i].updateDate,deleteColumn1]);
+        
+        }
+      }
+    });
+    }
+    function Update() {
+      var res = validate();
+    if (res == false) {
+        return false;
+    }
+      var studentObj = {
+            name: $('#Name').val(),
+            id: $('#ID').val(),
+            email: $('#Email').val(),
+            birthday: $('#Birthday').val(),
+            graduationDate: $('#GraduationDate').val(),
+            grade: $('#Grade').val(),
+        };
+        var studentid = studentObj.id;
+      $.ajax({
+        url: "https://localhost:7058/api/Admins/1/Students/" ,
+        data: JSON.stringify(studentObj),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+          loadData();
+          $('#myModal').modal('hide');
+          $('#Name').val("");
+          $('#ID').val("");
+          $('#Email').val("");
+          $('#Birthday').val("");
+          $('#GraduationDate').val("");
+          $('#Grade').val("");
+            
+        },
+        error: function (errormessage) {
+            alert(errormessage.responseText);
+        }
+    });
+}function validate() {
+    var isValid = true;
+    if ($('#Name').val().trim() == "") {
+        $('#Name').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#Name').css('border-color', 'lightgrey');
+    }
+    if ($('#ID').val().trim() == "") {
+        $('#ID').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#ID').css('border-color', 'lightgrey');
+    }
+    if ($('#Email').val().trim() == "") {
+        $('#Email').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#Email').css('border-color', 'lightgrey');
+    }
+    if ($('#Birthday').val().trim() == "") {
+        $('#Birthday').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#Birthday').css('border-color', 'lightgrey');
+    }
+    return isValid;
+    if ($('#GraduationDate').val().trim() == "") {
+        $('#GraduationDate').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#GraduationDate').css('border-color', 'lightgrey');
+    }
+    return isValid;
+    if ($('#Grade').val().trim() == "") {
+        $('#Grade').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#Grade').css('border-color', 'lightgrey');
+    }
+    return isValid;
 }
-   
-
- 
-
 </script>

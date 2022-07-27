@@ -4,3 +4,4 @@ Kalia Cummings,41972,dui.lectus.rutrum@google.com,21.02.2000,03.02.2021,72
 Charles Weeks,796433,neque.non@google.com,26.11.2000,27.03.2022,59
 Acton Blackburn,256877,eu.erat@google.com,29.04.1999,13.08.2019,89
 Phil Wood,93245934,mattis.semper.dui@google.com,04.12.1999,22.07.2017,85
+Aysu Aylin,12345,aysukaplan22@gmail.com,20.09.2001,21.06.2024,87
